@@ -217,7 +217,9 @@ sub DoNothing {print STDOUT;}
 
 # Main
 @commandtable = (
-	{'show configuration'	=> 'ShowConfiguration'},
+	{'show version'         => 'ShowConfiguration'},
+        {'show configuration'           => 'ShowConfiguration'},
+        {'show configuration commands'  => 'ShowConfiguration'},
 );
 # Use an array to preserve the order of the commands and a hash for mapping
 # commands to the subroutine and track commands that have been completed.
