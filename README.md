@@ -21,6 +21,6 @@ To integrate into your RANCID install:
 * Add a new device to your 'router.db', with the vendor of 'vyos'
 * Use it  :)
 
-h5. Todo
+Todo
 
 * Add more commands (IE, 'show configuration commands' to make the config easy to restore, 'sh ver', etc)
