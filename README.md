@@ -1,8 +1,10 @@
 RANCID Scripts for VyOS/Vyatta
 ======
 
-Vyatta (VyOS) scripts for Rancid. Forked from https://github.com/damianfantini/rancid;
-vrancid appears to be very similar to some other scripts that are floating around the web.
+Vyatta (VyOS) scripts for Rancid.  Forked from
+https://github.com/damianfantini/rancid;
+vrancid appears to be very similar to some other scripts that are
+floating around the web.
 
 Includes:
 * vlogin - basic login script, confirmed to work with VyOS
@@ -10,17 +12,14 @@ Includes:
 
 To integrate into your RANCID install:
 * Copy vlogin and vrancid to your 'bin' directory
-* Modify 'rancid-fe', and add vrancid to your vendor table.. IE:
+* Modify 'rancid.types.conf', and add vrancid.. IE:
 
 ```
-%vendortable = (
-<...>
-    'vyos'              => 'vrancid',
-);
+vyos;script;vrancid
 ```
 * Add a new device to your 'router.db', with the vendor of 'vyos'
 * Use it  :)
 
 Todo
 
-* Add more commands (IE, 'show configuration commands' to make the config easy to restore, 'sh ver', etc)
+* Add more commands
