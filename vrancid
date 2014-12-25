@@ -5,7 +5,7 @@
 use Getopt::Std;
 getopts('dflV');
 if ($opt_V) {
-    print "rancid 2.3.6\n";
+    print "vrancid 3.0\n";
     exit(0);
 }
 $debug = $opt_d;
@@ -140,7 +140,7 @@ sub ShowConfiguration {
     while (<INPUT>) {
 	tr/\015//d;
 	next if (/^\s*$/);
-	# end of config - hopefully.  juniper does not have a reliable
+	# end of config - hopefully.  VyOS does not have a reliable
 	# end-of-config tag.  appears to end with "\nPROMPT>", but not sure.
 	if (/$prompt/) {
 	    $found_end++;
@@ -148,6 +148,12 @@ sub ShowConfiguration {
 	}
 	next if (/^system (shutdown message from|going down )/i);
 	next if (/^\{(master|backup)(:\d+)?\}/);
+
+	# Remove Uptime
+	next if (/^uptime/i);
+	# Sometimes the 'show' commands are echoed back
+	next if (/^show/);
+
 	$lines++;
 
 	/^database header mismatch: / && return(-1);
