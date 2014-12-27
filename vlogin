@@ -389,6 +389,14 @@ proc run_commands { prompt command } {
     global in_proc
     set in_proc 1
 
+    # For some reason the full VyOS prompt is prefixed with an escape 
+    # sequence \e]0; and the configure mode prompt does not contain the 
+    # current path found in the normal prompt.  Strip these out to form 
+    # the config mode prompt.
+    set prompt [regsub "^.*;" $prompt ""]
+    # Remove the path starting with :
+    set prompt_config [regsub {:.*} $prompt ""]
+
     send "set terminal length 0\r"
 
     set commands [split $command \;]
@@ -398,6 +406,7 @@ proc run_commands { prompt command } {
 	
 	expect {
 	    -re "^\[^\n\r *]*$prompt"	{}
+	    -re "^\[^\n\r *]*$prompt_config"	{}
 	    -re "^\[^\n\r]*$prompt $"	{ exp_continue }
 	    -re "(\r\n|\n)"		{ exp_continue }
 	}
