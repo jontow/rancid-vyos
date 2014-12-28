@@ -234,12 +234,14 @@ sub DoNothing {print STDOUT;}
 
 # Main
 @commandtable = (
-	{'show version'         => 'ShowConfiguration'},
-	{'show hardware cpu'	=> 'ShowConfiguration'},
-	{'show hardware dmi'	=> 'ShowConfiguration'},
-	{'show hardware pci'	=> 'ShowConfiguration'},
-        {'show configuration'           => 'ShowConfiguration'},
-        {'show configuration commands'  => 'ShowConfiguration'},
+	{'show version'			=> 'ShowConfiguration'},
+	{'show hardware cpu'		=> 'ShowConfiguration'},
+	{'show hardware dmi'		=> 'ShowConfiguration'},
+	{'show hardware pci'		=> 'ShowConfiguration'},
+	{'show hardware usb'		=> 'ShowConfiguration'},
+	{'show configuration'		=> 'ShowConfiguration'},
+	{'show configuration commands'	=> 'ShowConfiguration'},
+	{'show system routing-daemons'	=> 'ShowConfiguration'},
 );
 # Use an array to preserve the order of the commands and a hash for mapping
 # commands to the subroutine and track commands that have been completed.
