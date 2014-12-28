@@ -235,6 +235,7 @@ sub DoNothing {print STDOUT;}
 # Main
 @commandtable = (
 	{'show version'			=> 'ShowConfiguration'},
+	{'show system image'		=> 'ShowConfiguration'},
 	{'show hardware cpu'		=> 'ShowConfiguration'},
 	{'show hardware dmi'		=> 'ShowConfiguration'},
 	{'show hardware pci'		=> 'ShowConfiguration'},
