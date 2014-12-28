@@ -216,7 +216,7 @@ sub ShowConfiguration {
 	ProcessHistory("","","","$_");
     }
 
-    if ($lines < 3) {
+    if ($lines < 1) {
 	printf(STDERR "ERROR: $host configuration appears truncated.\n");
 	$found_end = 0;
 	return(-1);
