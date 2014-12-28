@@ -153,6 +153,7 @@ sub ShowConfiguration {
 	next if (/^uptime/i);
 	# Sometimes the 'show' commands are echoed back
 	next if (/^show/);
+	next if (/^exit/);
 
 	$lines++;
 
