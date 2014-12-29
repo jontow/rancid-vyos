@@ -13,6 +13,7 @@ Includes:
 * vrancid - the Rancid wrapper to actually grab the configs
 
 To integrate into your RANCID install:
+
 * Copy vlogin and vrancid to your 'bin' directory
 * Modify 'rancid.types.conf', and add vrancid.. IE:
 
