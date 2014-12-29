@@ -3,8 +3,9 @@ RANCID Scripts for VyOS/Vyatta
 
 VyOS (Vyatta) scripts for Rancid.  Forked from 
 https://github.com/damianfantini/rancid and 
-https://github.com/natecarlson/vyatta-rancid; vrancid appears to be very 
-similar to some other scripts that are floating around the web.
+https://github.com/natecarlson/vyatta-rancid
+
+vrancid appears to be very similar to some other scripts that are floating around the web.
 
 Includes:
 * vlogin - basic login script, confirmed to work with VyOS
