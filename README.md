@@ -8,6 +8,7 @@ https://github.com/natecarlson/vyatta-rancid
 vrancid appears to be very similar to some other scripts that are floating around the web.
 
 Includes:
+
 * vlogin - basic login script, confirmed to work with VyOS
 * vrancid - the Rancid wrapper to actually grab the configs
 
