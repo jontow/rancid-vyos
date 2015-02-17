@@ -7,11 +7,13 @@ https://github.com/natecarlson/vyatta-rancid; vrancid appears to be very
 similar to some other scripts that are floating around the web.
 
 Includes:
+
 * vlogin - basic login script, confirmed to work with VyOS
 * vyos.pm - the Rancid wrapper module to actually grab the configs
 * vrancid - the Rancid wrapper to actually grab the configs (deprecated)
 
 To integrate into your RANCID install:
+
 * Copy vlogin and vrancid to your 'bin' directory
 * Copy vyos.pm to your PERL rancid directory
 * Modify 'rancid.types.conf', and add vrancid.. IE:
