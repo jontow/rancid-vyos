@@ -16,8 +16,7 @@ To integrate into your RANCID install:
 
 * Copy vlogin and vrancid to your 'bin' directory
 * Copy vyos.pm to your PERL rancid directory
-* Modify 'rancid.types.conf', and add vrancid.. IE:
-
+* Add the following to 'rancid.types.conf':
 ```
 vyos;script;rancid -t vyos
 vyos;login;vlogin
