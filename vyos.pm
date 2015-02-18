@@ -56,8 +56,6 @@ $Exporter::Verbose=1;
 #XXX use rancid 3.1;
 use rancid;
 
-our $ShowChassisSCB;			# Only run ShowChassisSCB() once
-
 @ISA = qw(Exporter rancid main);
 #our @EXPORT = qw($VERSION)
 
@@ -130,34 +128,6 @@ TOP: while (<$INPUT>) {
     }
 }
 
-# This routine parses "show system boot-messages"
-sub ShowSystemBootMessages {
-    my($INPUT, $OUTPUT, $cmd) = @_;
-    print STDERR "    In ShowSystemBootMessages: $_" if ($debug);
-
-    s/^[a-z]+@//;
-    ProcessHistory("","","","# $_");
-    while (<$INPUT>) {
-	tr/\015//d;
-	last if (/$prompt/);
-	next if (/^system (shutdown message from|going down )/i);
-	next if (/^\{(master|backup)(:\d+)?\}/);
-
-	/Unrecognized command/ && return(1);
-	/command is not valid/ && return(1);
-	/^\s+\^/ && return(1);
-	/syntax error/ && return(1);
-
-	/^JUNOS / && <$INPUT> && next;
-	/^Timecounter "TSC" / && next;
-	/^real memory / && next;
-	/^avail memory / && next;
-	/^\/dev\// && next;
-	ProcessHistory("","","","# $_");
-    }
-    return(0);
-}
-
 # This routine parses "show version"
 sub ShowVersion {
     my($INPUT, $OUTPUT, $cmd) = @_;
@@ -172,9 +142,9 @@ sub ShowVersion {
 	next if (/^system (shutdown message from|going down )/i);
 	next if (/^\{(master|backup)(:\d+)?\}/);
 	next if (/^uptime/i);
+	next if (/^show/);
 	/# error: abnormal / && return(-1);
 
-	/^Juniper Networks is:/ && ProcessHistory("","","","# \n# $_") && next;
 	ProcessHistory("","","","# $_");
     }
     ProcessHistory("","","","#\n");
@@ -203,8 +173,6 @@ sub ShowConfiguration {
 	next if (/^system (shutdown message from|going down )/i);
 	next if (/^\{(master|backup)(:\d+)?\}/);
 	next if (/^\{(primary|secondary)(:\d+)?\}/);
-
-	# Sometimes the 'show' commands are echoed back
 	next if (/^show/);
 	next if (/^exit/);
 
