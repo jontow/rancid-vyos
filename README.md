@@ -10,11 +10,10 @@ Includes:
 
 * vlogin - basic login script, confirmed to work with VyOS
 * vyos.pm - the Rancid wrapper module to actually grab the configs
-* vrancid - the Rancid wrapper to actually grab the configs (deprecated)
 
 To integrate into your RANCID install:
 
-* Copy vlogin and vrancid to your 'bin' directory
+* Copy vlogin to your 'bin' directory
 * Copy vyos.pm to your PERL rancid directory
 * Add the following to 'rancid.types.conf':
 ```
