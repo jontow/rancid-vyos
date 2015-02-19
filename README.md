@@ -26,7 +26,7 @@ vyos;command;vyos::ShowConfiguration;show hardware dmi
 vyos;command;vyos::ShowConfiguration;show hardware pci
 vyos;command;vyos::ShowConfiguration;show hardware scsi
 vyos;command;vyos::ShowConfiguration;show hardware usb
-vyos;command;vyos::ShowConfiguration;show system routing-daemons
+vyos;command;vyos::ShowVersion;show system routing-daemons
 vyos;command;vyos::ShowVersion;show system image
 vyos;command;vyos::ShowVersion;show version all
 vyos;command;vyos::ShowConfiguration;show configuration
