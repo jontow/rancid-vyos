@@ -20,11 +20,11 @@ vyos;script;rancid -t vyos
 vyos;login;vlogin
 vyos;module;vyos
 vyos;inloop;vyos::inloop
-vyos;command;vyos::ShowConfiguration;show hardware cpu
-vyos;command;vyos::ShowConfiguration;show hardware dmi
-vyos;command;vyos::ShowConfiguration;show hardware pci
-vyos;command;vyos::ShowConfiguration;show hardware scsi
-vyos;command;vyos::ShowConfiguration;show hardware usb
+vyos;command;vyos::ShowHardware;show hardware cpu
+vyos;command;vyos::ShowHardware;show hardware dmi
+vyos;command;vyos::ShowHardware;show hardware pci
+vyos;command;vyos::ShowHardware;show hardware scsi
+vyos;command;vyos::ShowHardware;show hardware usb
 vyos;command;vyos::ShowVersion;show system routing-daemons
 vyos;command;vyos::ShowVersion;show system image
 vyos;command;vyos::ShowVersion;show version all
