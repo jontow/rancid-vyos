@@ -128,6 +128,32 @@ TOP: while (<$INPUT>) {
     }
 }
 
+# This routine parses "show hardware"
+sub ShowHardware {
+    my($INPUT, $OUTPUT, $cmd) = @_;
+    print STDERR "    In ShowHardware: $_" if ($debug);
+
+    s/^[a-z]+@//;
+    ProcessHistory("","","","# $_");
+    while (<$INPUT>) {
+	tr/\015//d;
+	last if (/$prompt/);
+	return 1 if (/^aborted!/i);
+	next if (/^system (shutdown message from|going down )/i);
+	next if (/^\{(master|backup)(:\d+)?\}/);
+	next if (/^show/);
+
+	/Couldn\'t initiate connection/ && return(-1);
+	/Unrecognized command/ && return(1);
+	/command is not valid/ && return(1);
+	/^\s+\^/ && return(1);
+	/syntax error/ && return(1);
+
+	ProcessHistory("","","","# $_");
+    }
+    return(0);
+}
+
 # This routine parses "show version"
 sub ShowVersion {
     my($INPUT, $OUTPUT, $cmd) = @_;
