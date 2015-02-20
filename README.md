@@ -13,7 +13,7 @@ Includes:
 To integrate into your RANCID install:
 
 * Copy vlogin to your 'bin' directory
-* Copy vyos.pm to your PERL rancid directory
+* Copy vyos.pm to your PERL5LIB rancid directory
 * Add the following to 'rancid.types.conf':
 ```
 vyos;script;rancid -t vyos
