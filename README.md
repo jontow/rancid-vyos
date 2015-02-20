@@ -9,28 +9,13 @@ Includes:
 
 * vlogin - basic login script, confirmed to work with VyOS
 * vyos.pm - the Rancid wrapper module to actually grab the configs
+* rancid.types.conf - additional device type configuration
 
 To integrate into your RANCID install:
 
 * Copy vlogin to your 'bin' directory
 * Copy vyos.pm to your PERL5LIB rancid directory
-* Add the following to 'rancid.types.conf':
-```
-vyos;script;rancid -t vyos
-vyos;login;vlogin
-vyos;module;vyos
-vyos;inloop;vyos::inloop
-vyos;command;vyos::ShowHardware;show hardware cpu
-vyos;command;vyos::ShowHardware;show hardware dmi
-vyos;command;vyos::ShowHardware;show hardware pci
-vyos;command;vyos::ShowHardware;show hardware scsi
-vyos;command;vyos::ShowHardware;show hardware usb
-vyos;command;vyos::ShowVersion;show system routing-daemons
-vyos;command;vyos::ShowVersion;show system image
-vyos;command;vyos::ShowVersion;show version all
-vyos;command;vyos::ShowConfiguration;show configuration
-vyos;command;vyos::ShowConfiguration;show configuration commands
-```
+* Append rancid.types.conf to your existing rancid.types.conf file (or create it if it doesn't exist)
 * Add a new device to your 'router.db', with the vendor of 'vyos'
 * Use it  :)
 
