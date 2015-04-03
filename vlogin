@@ -1,8 +1,8 @@
 #! /usr/bin/expect --
 ##
 ##
-## rancid 2.3.6
-## Copyright (c) 1997-2009 by Terrapin Communications, Inc.
+## rancid 3.1
+## Copyright (c) 1997-2014 by Terrapin Communications, Inc.
 ## All rights reserved.
 ##
 
@@ -99,7 +99,7 @@ for {set i 0} {$i < $argc} {incr i} {
 	    # ignore -v
 	# Version string
 	} -V* {
-	    send_user "rancid 2.3.6\n"
+	    send_user "rancid 3.1\n"
 	    exit 0
 	# Expect script to run.
 	} -s* {
@@ -431,6 +431,7 @@ set exitval 0
 foreach router [lrange $argv $i end] {
     set router [string tolower $router]
     send_user "$router\n"
+
     # device timeout
     set timeout [find timeout $router]
     if { [llength $timeout] == 0 } {
