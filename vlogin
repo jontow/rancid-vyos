@@ -26,7 +26,7 @@ set avenable 1
 # tracks if we receive them on the command line.
 set do_passwd 1
 # Save config, if prompted
-set do_saveconfig 1
+set do_saveconfig 0
 # Sometimes routers take awhile to answer (the default is 10 sec)
 set timeoutdflt 120
 
@@ -164,7 +164,7 @@ if { $i == $argc } {
 # Only be quiet if we are running a script (it can log its output
 # on its own)
 if { $do_script } {
-    log_user 1
+    log_user 0
 } else {
     log_user 1
 }
@@ -378,7 +378,9 @@ proc login { router user passwd cmethod cyphertype identfile} {
 	-re "(\r\n|\n)"		{ exp_continue; }
 	-re "^\[^ ]+$prompt"	{ 
 				  set prompt $expect_out(0,string);
-				  regsub ">" $prompt "\[#>]" prompt;
+				  regsub ":" $prompt "(:.*$|#)" prompt;
+				  # remove prefixed escape sequence
+				  set prompt [regsub "^.*;" $prompt ""];
 				}
     }
     
@@ -391,16 +393,7 @@ proc run_commands { prompt command } {
     global in_proc
     set in_proc 1
 
-    # For some reason the full VyOS prompt is prefixed with an escape 
-    # sequence \e]0; and the configure mode prompt does not contain the 
-    # current path found in the normal prompt.  Strip these out to form 
-    # the config mode prompt.
-    set prompt [regsub "^.*;" $prompt ""]
-    # Remove the path starting with :
-    set prompt_config [regsub {:.*} $prompt ""]
-
     send "set terminal length 0\r"
-
     set commands [split $command \;]
     set num_commands [llength $commands]
     for {set i 0} {$i < $num_commands} { incr i} {
@@ -408,7 +401,7 @@ proc run_commands { prompt command } {
 	
 	expect {
 	    -re "^\[^\n\r *]*$prompt"	{}
-	    -re "^\[^\n\r *]*$prompt_config"	{}
+	    -re "(\u001b).*$prompt"	{}
 	    -re "^\[^\n\r]*$prompt $"	{ exp_continue }
 	    -re "(\r\n|\n)"		{ exp_continue }
 	}
